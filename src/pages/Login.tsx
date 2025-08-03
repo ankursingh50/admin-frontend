@@ -21,9 +21,21 @@ const Login: React.FC = () => {
   const primaryGreen = '#245134';
   const goldenColor = '#D2A06E';
 
+  const allowedUsers = [
+    { username: 'admin', password: 'admin' },
+    { username: 'Ankur', password: 'Welcome@01' },
+    { username: 'Manthira', password: 'Welcome@01' },
+    { username: 'Adminuser', password: 'Welcome@01' },
+  ];
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'admin') {
+  
+    const user = allowedUsers.find(
+      (u) => u.username === username && u.password === password
+    );
+  
+    if (user) {
       localStorage.setItem('auth', 'true');
       navigate('/dashboard');
     } else {
